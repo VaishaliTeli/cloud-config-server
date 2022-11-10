@@ -1,0 +1,38 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost 
+    
+    
+datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name:  org.h2.Driver
+    username: sa
+    password: password 
+  
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect  
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+       
+       
+    
+microservice:
+  payment-service:
+    endpoints:
+      endpoint:
+        uri:
+         - http://PAYMENT-SERVICE/payment/doPayment
+        
+  order-service:
+    endpoints:
+      endpoint:
+        uri:
+        - http://ORDER-SERVICE/orders/doPayment
+
